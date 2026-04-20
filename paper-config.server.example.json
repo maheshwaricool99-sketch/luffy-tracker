@@ -1,0 +1,9 @@
+{
+  "enabled": false,
+  "mode": "testnet",
+  "apiKey": "PUT_YOUR_BINANCE_KEY_HERE",
+  "apiSecret": "PUT_YOUR_BINANCE_SECRET_HERE",
+  "paperBaseUrl": "https://testnet.binancefuture.com",
+  "publicBaseUrl": "https://fapi.binance.com",
+  "updatedAtMs": 0
+}

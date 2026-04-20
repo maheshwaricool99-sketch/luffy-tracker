@@ -1,0 +1,135 @@
+@import "tailwindcss";
+
+:root {
+  --font-sans: Inter, ui-sans-serif, system-ui, sans-serif;
+  --bg-app: #06111F;
+  --bg-sidebar: #081423;
+  --bg-panel: #0B1728;
+  --bg-panel-elevated: #0F1D31;
+  --border-default: rgba(255, 255, 255, 0.08);
+  --text-primary: #F3F7FF;
+  --text-secondary: #A7B4C8;
+  --text-muted: #70809A;
+
+  /* Dynamic viewport height — accounts for iOS Safari chrome/address bar */
+  --viewport-height: 100dvh;
+}
+
+@theme inline {
+  --font-sans: var(--font-sans);
+  --color-background: var(--bg-app);
+  --color-foreground: var(--text-primary);
+}
+
+* {
+  border-color: var(--border-default);
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Prevent horizontal overflow at root */
+  overflow-x: hidden;
+}
+
+html,
+body {
+  height: 100%;
+  /* Allow vertical scroll but never horizontal */
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+body {
+  background:
+    radial-gradient(circle at top left, rgba(91, 140, 255, 0.12), transparent 24%),
+    radial-gradient(circle at top right, rgba(25, 195, 125, 0.06), transparent 16%),
+    var(--bg-app);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+  -webkit-tap-highlight-color: transparent;
+  /* Prevent text size inflation on mobile */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Body scroll lock — applied when mobile drawer is open */
+body.nav-drawer-open {
+  overflow: hidden;
+  touch-action: none;
+}
+
+#app {
+  min-height: 100vh;
+  min-height: var(--viewport-height);
+  display: flex;
+  flex-direction: column;
+  /* Prevent content from causing horizontal overflow */
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(91, 140, 255, 0.28);
+}
+
+/* Desktop scrollbars */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* On mobile, hide scrollbars but keep functionality */
+@media (max-width: 1023px) {
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.12);
+  }
+}
+
+/* Utility: horizontally scrollable data container with visual overflow hint */
+.scroll-x-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+/* Minimum tap target helper */
+.tap-target {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Hide scrollbar but keep scroll functionality */
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

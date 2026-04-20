@@ -1,0 +1,5 @@
+export type RecoveryEvent =
+  | "RECOVERY_TRIGGERED"
+  | "RECOVERY_SUCCEEDED"
+  | "RECOVERY_FAILED"
+  | "SNAPSHOT_EXPIRE";
